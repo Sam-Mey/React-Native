@@ -21,7 +21,7 @@ interface BottomNavigationProps {
 # App.tsx
 import React from 'react';
 import { View, StyleSheet, SafeAreaView, ScrollView, Text } from 'react-native';
-import BottomTabBar from './src/components/NavigationOptionsBar/BottomTabBar';
+import BottomTabBar from './BottomTabBar';
 
 const App = () => {
 
@@ -73,7 +73,7 @@ interface BottomNavigationProps {
 # App.tsx
 import React from 'react';
 import { View, StyleSheet, SafeAreaView, ScrollView, Text } from 'react-native';
-import BottomTabBar from './src/components/NavigationOptionsBar/BottomTabBar';
+import BottomTabBar from './BottomTabBar';
 
 const App = () => {
 
