@@ -38,7 +38,7 @@ const BottomTabBar: React.FC<BottomNavigationProps> = ({ tabs, initialTab, onTab
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: 'green',// 背景色
+        backgroundColor: '#312520',// 背景色
         flexDirection: 'row',
         // justifyContent: 'space-around',
         // alignItems: 'center',
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
     },
     tabText: {
-        fontSize: 16,
+        fontSize: 25,
         fontWeight: 'bold',
     },
 });
