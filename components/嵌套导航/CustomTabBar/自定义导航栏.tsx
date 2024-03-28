@@ -2,14 +2,14 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
-interface BottomNavigationProps {
+interface CustomNavigationProps {
     // tabs: string[]; // 将tabs参数标注为字符串数组类型
     tabs: React.ReactNode[]; // 将 tabs 参数的类型定义为 React Node 数组
     initialTab: number;
     onTabPress?: (index: number) => void;
 }
 
-const BottomTabBar: React.FC<BottomNavigationProps> = ({ tabs, initialTab, onTabPress }) => {
+const CustomTabBar: React.FC<CustomNavigationProps> = ({ tabs, initialTab, onTabPress }) => {
     const [activeTab, setActiveTab] = useState(initialTab);
 
     const handleTabPress = (tabIndex: number) => {
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
         // alignItems: 'center',
         height: 50,
         // position: 'absolute',
-        bottom: 0,
+        Custom: 0,
         left: 0,
         right: 0,
     },
@@ -63,4 +63,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default BottomTabBar;
+export default CustomTabBar;
