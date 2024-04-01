@@ -66,7 +66,7 @@ const NumberButtonsSelector = () => {
 
         return () => clearInterval(interval);
     }, []);
-
+    //==================================================================================================
     return (
         <View>
             <ScrollView>
