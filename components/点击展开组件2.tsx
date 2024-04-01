@@ -7,81 +7,110 @@ interface Props {
 
 const FixedOptionsComponent: React.FC<Props> = ({ options }) => {
     const [expanded, setExpanded] = useState(false);
+    const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
 
     const toggleExpand = () => {
         setExpanded(!expanded);
     };
 
-    // 从 options 中截取前 18 个选项，确保总共只有 18 个选项
-    const displayedOptions = options.slice(0, 18);
+    const toggleOption = (option: string) => {
+        if (selectedOptions.includes(option)) {
+            setSelectedOptions(selectedOptions.filter(item => item !== option));
+        } else {
+            setSelectedOptions([...selectedOptions, option]);
+        }
+    };
 
-    // 将 18 个选项分成三行，每行 6 个选项
-    const rows = [];
-    for (let i = 0; i < 3; i++) {
-        const rowOptions = displayedOptions.slice(i * 6, (i + 1) * 6);
-        rows.push(
-            <View key={i} style={styles.row}>
-                {rowOptions.map((option, index) => (
-                    <TouchableOpacity key={index} style={styles.option}>
-                        <Text>{option}</Text>
-                    </TouchableOpacity>
-                ))}
-            </View>
-        );
-    }
+    console.log('Expanded:', expanded); // 添加调试语句
+    console.log('Selected Options:', selectedOptions); // 添加调试语句
 
     return (
         <View style={styles.container}>
             <TouchableOpacity onPress={toggleExpand} style={styles.header}>
                 <Text style={styles.headerText}>{expanded ? 'Hide Options' : 'Show Options'}</Text>
             </TouchableOpacity>
-            {expanded && (
-                <View style={styles.optionsContainer}>
-                    {rows}
-                </View>
-            )}
+            {options ? ( // 添加条件检查
+                expanded ? (
+                    <View style={styles.optionsContainer}>
+                        {options.slice(0, 18).reduce((acc: React.ReactNode[][], option, index) => {
+                            const groupIndex = Math.floor(index / 6);
+                            if (!acc[groupIndex]) {
+                                acc[groupIndex] = [];
+                            }
+                            acc[groupIndex].push(
+                                <TouchableOpacity
+                                    key={index}
+                                    style={[
+                                        styles.optionButton,
+                                        selectedOptions.includes(option) && styles.selectedOptionButton,
+                                    ]}
+                                    onPress={() => toggleOption(option)}
+                                >
+                                    <Text
+                                        style={[
+                                            styles.optionText,
+                                            selectedOptions.includes(option) && styles.selectedOptionText,
+                                        ]}
+                                    >
+                                        {option}
+                                    </Text>
+                                </TouchableOpacity>
+                            );
+                            return acc;
+                        }, []).map((row, index) => (
+                            <View key={index} style={styles.row}>
+                                {row}
+                            </View>
+                        ))}
+                    </View>
+                ) : null
+            ) : null}
         </View>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        // flex: 1,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        // paddingTop: 20, // 顶部填充，以容纳头部按钮
+        // paddingTop: 20,
     },
     header: {
-        position: 'absolute', // 固定位置
-        top: 0, // 顶部
-        // width: '100%', // 宽度铺满
+        width: '100%',
         padding: 10,
         backgroundColor: 'lightblue',
         borderRadius: 5,
-        zIndex: 1, // 确保头部在选项之上
+        zIndex: 1,
     },
     headerText: {
         fontWeight: 'bold',
         textAlign: 'center',
     },
     optionsContainer: {
-        flex: 1,
         width: '100%',
-        paddingTop: 40, // 空出固定头部的空间
+        paddingTop: 10,
     },
     row: {
         flexDirection: 'row',
         marginBottom: 5,
     },
-    option: {
+    optionButton: {
         flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
         borderWidth: 1,
         borderColor: 'lightgray',
         padding: 10,
         borderRadius: 5,
         margin: 5,
+    },
+    optionText: {
+        textAlign: 'center',
+    },
+    selectedOptionButton: {
+        backgroundColor: 'lightgreen',
+    },
+    selectedOptionText: {
+        fontWeight: 'bold',
     },
 });
 
