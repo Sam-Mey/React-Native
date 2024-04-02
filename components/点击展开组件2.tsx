@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { useNumberDataContext } from '../../../contexts/ManagerContext';
+
 
 interface Props {
     options: string[];
@@ -8,18 +10,39 @@ interface Props {
 const FixedOptionsComponent: React.FC<Props> = ({ options }) => {
     const [expanded, setExpanded] = useState(false);
     const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
+    const { selectedNumbers, setSelectedNumbers } = useNumberDataContext(); // 使用useNumberDataContext钩子访问上下文中的操作
+
+
 
     const toggleExpand = () => {
         setExpanded(!expanded);
     };
 
+    const option1Logic = () => {
+        // 选项1逻辑
+    };
+
+    const option2Logic = () => {
+        const smallNumbers = Array.from({ length: 24 }, (_, index) => index + 1);
+        // 选项2逻辑
+    };
+
     const toggleOption = (option: string) => {
-        if (selectedOptions.includes(option)) {
-            setSelectedOptions(selectedOptions.filter(item => item !== option));
+        if (option === 'Option 1') {
+            option1Logic();
+        } else if (option === 'Option 2') {
+            option2Logic();
         } else {
-            setSelectedOptions([...selectedOptions, option]);
+            if (selectedOptions.includes(option)) {
+                setSelectedOptions(selectedOptions.filter(item => item !== option));
+                setSelectedNumbers(selectedNumbers.filter(number => number !== parseInt(option)));
+            } else {
+                setSelectedOptions([...selectedOptions, option]);
+                setSelectedNumbers([...selectedNumbers, parseInt(option)]);
+            }
         }
     };
+
 
     console.log('Expanded:', expanded); // 添加调试语句
     console.log('Selected Options:', selectedOptions); // 添加调试语句
@@ -29,7 +52,7 @@ const FixedOptionsComponent: React.FC<Props> = ({ options }) => {
             <TouchableOpacity onPress={toggleExpand} style={styles.header}>
                 <Text style={styles.headerText}>{expanded ? 'Hide Options' : 'Show Options'}</Text>
             </TouchableOpacity>
-            {options ? ( // 添加条件检查
+            {options ? (
                 expanded ? (
                     <View style={styles.optionsContainer}>
                         {options.slice(0, 18).reduce((acc: React.ReactNode[][], option, index) => {
@@ -74,7 +97,7 @@ const styles = StyleSheet.create({
         // flex: 1,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        // paddingTop: 20,
+        paddingTop: 20,
     },
     header: {
         width: '100%',

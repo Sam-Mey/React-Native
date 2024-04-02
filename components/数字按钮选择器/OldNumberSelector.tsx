@@ -59,31 +59,31 @@
 //     };
 
 //     // 大
-//     const handleSelectBig = () => {
-//         // 将所有25-49数字添加到已选数组中
-//         const bigNumbers = Array.from({ length: 25 }, (_, index) => index + 25);
+// const handleSelectBig = () => {
+//     // 将所有25-49数字添加到已选数组中
+//     const bigNumbers = Array.from({ length: 25 }, (_, index) => index + 25);
 
-//         // 如果已选数组中包含偶数数组，则移除偶数数组中的所有元素
-//         if (selectedNumbers.some(number => bigNumbers.includes(number))) {
-//             setSelectedNumbers(selectedNumbers.filter(number => !bigNumbers.includes(number)));
-//         } else {
-//             // 否则，添加偶数数组中的所有元素到已选数组中
-//             setSelectedNumbers([...selectedNumbers, ...bigNumbers]);
-//         }
+//     // 如果已选数组中包含偶数数组，则移除偶数数组中的所有元素
+//     if (selectedNumbers.some(number => bigNumbers.includes(number))) {
+//         setSelectedNumbers(selectedNumbers.filter(number => !bigNumbers.includes(number)));
+//     } else {
+//         // 否则，添加偶数数组中的所有元素到已选数组中
+//         setSelectedNumbers([...selectedNumbers, ...bigNumbers]);
+//     }
 //     };
 //     // 小
-//     const handleSelectSmall = () => {
-//         // 将所有01-24数字添加到已选数组中
-//         const smallNumbers = Array.from({ length: 24 }, (_, index) => index + 1);
+// const handleSelectSmall = () => {
+//     // 将所有01-24数字添加到已选数组中
+//     const smallNumbers = Array.from({ length: 24 }, (_, index) => index + 1);
 
-//         // 如果已选数组中包含偶数数组，则移除偶数数组中的所有元素
-//         if (selectedNumbers.some(number => smallNumbers.includes(number))) {
-//             setSelectedNumbers(selectedNumbers.filter(number => !smallNumbers.includes(number)));
-//         } else {
-//             // 否则，添加偶数数组中的所有元素到已选数组中
-//             setSelectedNumbers([...selectedNumbers, ...smallNumbers]);
-//         }
-//     };
+//     // 如果已选数组中包含偶数数组，则移除偶数数组中的所有元素
+//     if (selectedNumbers.some(number => smallNumbers.includes(number))) {
+//         setSelectedNumbers(selectedNumbers.filter(number => !smallNumbers.includes(number)));
+//     } else {
+//         // 否则，添加偶数数组中的所有元素到已选数组中
+//         setSelectedNumbers([...selectedNumbers, ...smallNumbers]);
+//     }
+// };
 //     // 单
 //     const handleSelectOdd = () => {
 //         // 将所有奇数数字添加到已选数组中
