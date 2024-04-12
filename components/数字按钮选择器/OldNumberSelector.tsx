@@ -99,7 +99,7 @@
 //         if (selectedNumbers.some(number => oddNumbers.includes(number))) {
 //             setSelectedNumbers(selectedNumbers.filter(number => !oddNumbers.includes(number)));
 //         } else {
-//             // 否则，添加偶数数组中的所有元素到已选数组中
+//             // 否则，添加奇数数组中的所有元素到已选数组中
 //             setSelectedNumbers([...selectedNumbers, ...oddNumbers]);
 //         }
 //     };
@@ -114,7 +114,7 @@
 //             }
 //         }
 
-//         // 如果已选数组中包含偶数数组，则移除偶数数组中的所有元素
+//         // 如果已选数组中包含奇数数组，则移除奇数数组中的所有元素
 //         if (selectedNumbers.some(number => evenNumbers.includes(number))) {
 //             setSelectedNumbers(selectedNumbers.filter(number => !evenNumbers.includes(number)));
 //         } else {

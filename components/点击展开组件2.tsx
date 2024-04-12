@@ -19,12 +19,11 @@ const FixedOptionsComponent: React.FC<Props> = ({ options }) => {
     };
 
     const option1Logic = () => {
-        // 选项1逻辑
+        // Option 1 逻辑
     };
 
     const option2Logic = () => {
-        const smallNumbers = Array.from({ length: 24 }, (_, index) => index + 1);
-        // 选项2逻辑
+        // Option 2 逻辑
     };
 
     const toggleOption = (option: string) => {
