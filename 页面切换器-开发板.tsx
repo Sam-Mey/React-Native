@@ -1,7 +1,8 @@
-import React, { useState, ReactNode } from 'react';
+import React, { useState, ReactNode, useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { useNumberContext } from '../Contexts/NumberContext';
 
-interface PageSwitchProps {
+interface PagesSwitchProps {
     pages: {
         key: string;
         component: ReactNode;
@@ -9,13 +10,23 @@ interface PageSwitchProps {
     }[];
 }
 
-const PageSwitch: React.FC<PageSwitchProps> = ({ pages }) => {
+const PagesSwitch: React.FC<PagesSwitchProps> = ({ pages }) => {
     const [currentPage, setCurrentPage] = useState<string>(pages[0].key);
+    const { setTitle } = useNumberContext(); // 获取setTitle方法
 
     const renderPage = () => {
         const page = pages.find(p => p.key === currentPage);
         return page ? page.component : null;
     };
+
+    // 设置标题到上下文
+    useEffect(() => {
+        const currentPageData = pages.find(page => page.key === currentPage);
+        if (currentPageData) {
+            console.log('setTitle:', currentPageData.title); // 打印日志
+            setTitle(currentPageData.title);
+        }
+    }, [currentPage, pages, setTitle]);
 
     return (
         <View style={styles.container}>
@@ -49,12 +60,14 @@ const styles = StyleSheet.create({
         margin: 10
     },
     button: {
-        backgroundColor: 'red',
+        // backgroundColor: 'red',
         justifyContent: 'center',
         alignItems: 'center',
         width: 80,
         height: 30,
-        borderRadius: 5,
+        borderColor: 'gray',
+        borderWidth: 1,
+        borderRadius: 30,
     },
     menuText: {
         fontSize: 16,
@@ -64,4 +77,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default PageSwitch;
+export default PagesSwitch;
